@@ -2,15 +2,18 @@ import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import React from 'react';
 
-const Card = () => {
+const Card = ({description, status, onDelete, onUpdate}) => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text style={styles.text}>
-        Memasakdjfkajfdflkajdsfl;jasdlkfja;sldfj;laksdjf;
-        laskdjf;lksdjf;lkdsajfl;kasdjf;lkasdjf;lkjasdf;sd
-      </Text>
-      <TouchableOpacity>
-        <Icon name="trash" size={25} style={styles.icon} />
+    <View>
+      <TouchableOpacity
+        onPress={onUpdate}
+        style={[styles.sectionContainer, status && styles.cardDone]}>
+        <Text style={[styles.text, status && styles.textDone]}>
+          {description}
+        </Text>
+        <TouchableOpacity onPress={onDelete}>
+          <Icon name="trash" size={25} style={styles.icon} />
+        </TouchableOpacity>
       </TouchableOpacity>
     </View>
   );
@@ -37,5 +40,11 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 8,
+  },
+  cardDone: {
+    backgroundColor: '#5cb85c',
+  },
+  textDone: {
+    color: '#fff',
   },
 });

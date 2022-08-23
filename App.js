@@ -10,12 +10,16 @@ import {
 } from 'react-native';
 import ButtonAdd from './Components/Buttons/Button';
 import Home from './Screens/Home/Home';
+import {store} from './Store/store';
+import {Provider} from 'react-redux';
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.sectionContainer}>
-      <Home />
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={styles.sectionContainer}>
+        <Home />
+      </SafeAreaView>
+    </Provider>
   );
 };
 
