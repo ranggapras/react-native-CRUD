@@ -1,24 +1,19 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-import ButtonAdd from './Components/Buttons/Button';
+import {SafeAreaView, StyleSheet} from 'react-native';
+
 import Home from './Screens/Home/Home';
-import {store} from './Store/store';
+import {store, persistor} from './Store/store';
 import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/es/integration/react';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <SafeAreaView style={styles.sectionContainer}>
-        <Home />
-      </SafeAreaView>
+      <PersistGate loading={null} persistor={persistor}>
+        <SafeAreaView style={styles.sectionContainer}>
+          <Home />
+        </SafeAreaView>
+      </PersistGate>
     </Provider>
   );
 };
